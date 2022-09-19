@@ -1,5 +1,3 @@
-<!--p+p太好听了-->
-<!--dreamin'太好听了-->
 
 5G协议栈与4G协议栈相仿，垂直方向由控制面Control Plane和用户面User Plane组成：
 - 控制面负责处理系统信令数据，与核心网控制面节点AMF(Access and Mobility Management Function)连接
