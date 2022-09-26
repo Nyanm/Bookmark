@@ -18,9 +18,42 @@
 
 #### 整型模板参数
 
-除类型外，模板参数也可以是整型数，包括布尔值、不同位数 (`int{N}_t`)、不同符号 (`{un}signed`)、甚至指针。由于C++的模板匹配在编译期完成，因此传入的整形模板参数也需要能在编译期确定。
+除类型外，模板参数也可以是整型数，包括布尔值、不同位数`int{N}_t`、不同符号 `{un}signed`、甚至指针`T{*}`。由于C++的模板匹配在编译期完成，因此传入的整形模板参数也需要能在编译期确定。
 
 ## 2. 模板元编程
+
+#### 特化
+
+特化 (Specialization) 根据传入模板参数的整数或类型，映射到相应模板实例化内容。实现模板特化时，首先需要声明模板的一般形式（空模板），随后要根据对应的整数或类型给出实例；在调用时，就会根据传入的模板参数进行相应的匹配，执行相应特例化的逻辑；如果匹配失败，则会执行一般形式的逻辑。
+
+下面是一个模板特化的例子。首先声明一个空模板作为其匹配失败的逻辑：
+
+```C++
+template <typename Fruit>
+bool analyzeFruit(Fruit& fruit, Result& result){
+	return false;
+}
+```
+
+该一般形式定义了一个模板参数`Fruit`，之后进行特例化的类型都是该模板的一个实例：
+
+```C++
+template <>
+bool analyzeFruit<Banana>(Banana& fruit, Result& result){
+	result.weight = fruit.height;
+	result.comment = "I'm a banana!";
+}
+
+template <>
+bool analyzeFruit<Coconut>(Coconut& fruit, Result& result){
+	result.texture = fruit.fur;
+	result.hardness = HARDNESS_INFINITE;
+}
+```
+
+在特化模板的声明语句中，由于该函数是一个模板函数，所以其声明前要添加`template`关键字；同时该函数是一个针对`Banana`类的一个实例，所以函数名后要声明相应的类型；而此时模板的类型已经被声明，也就无需传入相关的参数，所以`template <>`只需要留一对尖括号即可。
+
+#### 模板匹配
 
 
 
