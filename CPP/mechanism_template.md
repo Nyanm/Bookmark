@@ -1,6 +1,7 @@
 
 # Mechanism: Template
-<!--# C++ Template 进阶指南(https://github.com/wuye9036/CppTemplateTutorial)读书笔记-->
+
+[C++ Template 进阶指南](https://github.com/wuye9036/CppTemplateTutorial) 读书笔记
 
 ## 1. 基本语法
 
@@ -67,7 +68,7 @@ bool analyzeFruit<Coconut>(Coconut& fruit, Result& result){
 ``` c++
 constexpr size_t invalidTypeIndex = std::numeric_limits<size_t>::max();  
   
-template<typename ...T>  
+template<typename... T>  
 struct get_remaining_index;  
   
 template<typename Target, typename Head, typename... Remain>  
